@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block link %}
+    <link rel="stylesheet" href="{{ url_for('home_app.static', filename = '/css/home.css' ) }}">
+{% endblock %}
+
+
+{% block title %}
+Головна
+{% endblock %}
+
+{% block content %}
+
+<header>
+    <div class="header">
+        
+        <a href="/tour" class="tour url">Путівки</a>
+
+        {% if user.is_authenticated %}
+            <div class="username"><a class="">{{ user.username }}</a></div>
+        {% else %}
+        
+            <a href="/registration" class="registration url">Реєстрація</a>
+            <a href="/authorization" class="authorization url">Авторизація</a>  
+
+        {% endif %}
+    </div>
+</header>
+<main>
+    <div class="form-div">
+        <form name="feedback" class="form-to-answer" method="post">
+            <div class="input-div"> 
+                <h1 class="leave-feedback-title">Залишити відгук</h1>
+                <input class="inputs input" placeholder="Ім'я" type="text"               name="name">
+                <input class="inputs input email" placeholder="Електронна пошта" type="text"   name="email">
+                <textarea class="inputs textarea" placeholder="Коментар" name="description"></textarea>
+                <input type="submit" class="button-input" value="Залишити відгук"        name="submit">
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
